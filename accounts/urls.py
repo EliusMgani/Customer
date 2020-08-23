@@ -7,9 +7,10 @@ urlpatterns = [
     path('user/', views.userpage, name='UserPage'),
     path('profile/', views.profilesetting, name='Profile'),
     path('products/', views.products, name='Products'),
-    path('customer/<str:pk_test>/', views.customer, name='Customer'),
 
-    path('createOrder/<str:pk>/', views.createOrder, name='CreateOrder'),
+    #path('customer/', views.customer, name='CustomerOnly'),
+    path('customer/<str:pk_test>/', views.customer, name='Customer'),
+    path('createOrder/', views.createOrder, name='CreateOrder'),
     path('updateOrder/<str:pk>/', views.updateOrder, name='UpdateOrder'),
     path('deleteOrder/<str:pk>/', views.deleteOrder, name='DeleteOrder'),
 

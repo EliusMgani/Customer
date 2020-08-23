@@ -4,11 +4,19 @@
 {% block head %} {% endblock %}
 
 {% block content %}
-    <h3>Are you sure you want to delete {{item}}..??</h3>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <a class="btn btn-secondary" href="{% url 'Home' %}">Cancel</a>
-        <!--<button class="btn btn-secondary" href="{% url 'Home' %}">Cancel</button>-->
-        <button class="btn btn-danger" href="{% url 'Home' %}">Confirm</button>
-    </form>
+	<br>
+	<div class="row">
+		<div class="col-md-7">
+			<div class="card card-body">
+				<h3>Are you sure you want to delete {{item}}..??</h3>
+    			<form action="{% url 'DeleteOrder' item.id %}" method="POST">
+        			{% csrf_token %}
+        			<a class="btn btn-secondary" href="{% url 'Home' %}">Cancel</a>
+        			<!--<button class="btn btn-secondary" href="{% url 'Home' %}">Cancel</button>-->
+        			<button class="btn btn-danger" href="{% url 'Home' %}">Confirm</button>
+    			</form>			
+			</div>
+		</div>
+	</div>
+    
 {% endblock %}

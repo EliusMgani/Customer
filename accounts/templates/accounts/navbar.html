@@ -28,9 +28,17 @@
             </li>
             </ul>
         {% else %}
+            <!--<span><h4><a class="nav-link" href="{% url 'Profile' %}">Create New Order</a></h4></span>-->
+            <span><h4><a class="nav-link" href="{% url 'Profile' %}">Account Settings</a></h4></span>
+            
+            <!--
+            <li class="nav-item">
+                <h4><a class="nav-link" href="{% url 'Profile' %}">Create New Order</a></h4>
+            </li>
             <li class="nav-item">
                 <h4><a class="nav-link" href="{% url 'Profile' %}">Settings</a></h4>
             </li>
+        -->
         {% endif %}
     </div>
 

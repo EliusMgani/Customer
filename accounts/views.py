@@ -29,7 +29,7 @@ def home(request):
 
 
 @login_required(login_url='Login')
-@allowed_users(allowed_roles=['admin'])
+@allowed_users(allowed_roles=['Admin'])
 def products(request):
     products = Product.objects.all()
     return render(request, 'accounts/products.html', {'products': products})
@@ -110,9 +110,9 @@ def customer(request, pk_test):
 
 @login_required(login_url='Login')
 @allowed_users(allowed_roles=['Admin'])
-def createOrder(request, pk):
-    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra = 10)
-    customer = Customer.objects.get(id=pk)
+def createOrder(request):
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra = 5)
+    customer = Customer.objects.get()
     formset = OrderFormSet(queryset = Order.objects.none(), instance=customer)
     #form = OrderForm(initial={'customer': customer})
     if request.method == 'POST':
@@ -131,14 +131,15 @@ def createOrder(request, pk):
 @allowed_users(allowed_roles=['Admin'])
 def updateOrder(request, pk):
     order = Order.objects.get(id=pk)
-    form = OrderForm(instance=order)
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra = 5)
+    formset = OrderFormSet(instance=customer)
     if request.method == 'POST':
-        form = OrderForm(request.POST, instance=order)
-        if form.is_valid():
-            form.save()
+        formset = OrderFormSet(request.POST, instance=customer)
+        if formset.is_valid():
+            formset.save()
             messages.success(request, f'Order is Successfully Updated..!!')
             return redirect('Home')
-    context = {'form': form}
+    context = {'formset': formset}
     return render(request, 'accounts/order_form.html', context)
 
 
