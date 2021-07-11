@@ -1,0 +1,6 @@
+configparser==5.0.2
+Django==3.2.3
+greenlet==1.1.0
+itsdangerous==2.0.1
+MarkupSafe==2.0.1
+Werkzeug==2.0.1
